@@ -31,9 +31,9 @@ public class FactorNode implements INode {
 	public Object evaluate(Object[] args) throws Exception {
 		//FIXME Base return, nothing else will populate the call stack. Make them double, String and base op on those. Should be much less casting
 		if (intLex != null) {
-			return intLex;
+			return Double.parseDouble((String) intLex.value());
 		} else if (id != null) {
-			return id;
+			return (String) id.value();
 		} else {
 			return expr.evaluate(args);
 		}
