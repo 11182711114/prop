@@ -27,7 +27,7 @@ public class BlockNode implements INode {
 	public Object evaluate(Object[] args) throws Exception {
 		// FIXME BAD BAD BAD but I dont know how to make it work without knowing the amount of identifiers in the program before evaluating. I suppose I can count the number of assignment nodes...
 		Object[] currentValues = new Object[6];
-		Object stmtValue = stmt.evaluate(currentValues);
+		stmt.evaluate(currentValues);
 		StringBuilder builder = new StringBuilder();
 		
 		for (int i = 0; i < currentValues.length; i+=2) {

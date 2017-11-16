@@ -17,9 +17,9 @@ public class StatementsNode implements INode {
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
 		if (assign != null) {
-			Object assignEval = assign.evaluate(args);
-			Object stmtsEval = stmts.evaluate(args);
-			return assignEval;
+			assign.evaluate(args);
+			stmts.evaluate(args);
+			return null;
 		}
 		return null;
 	}
