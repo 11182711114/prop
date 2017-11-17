@@ -31,7 +31,7 @@ public class TermNode implements INode {
 		}
 			
 			
-		if (multOrDivOperator != null && factorValue.token() == Token.INT_LIT) {
+		if (multOrDivOperator != null) {
 			Lexeme termValue = (Lexeme) term.evaluate(args);
 			if (termValue.token() == Token.IDENT) {
 				for (int i = 0; i < args.length-1; i+=2) {
