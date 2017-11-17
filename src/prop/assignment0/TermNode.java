@@ -21,6 +21,18 @@ public class TermNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
+		Object termValue = null;
+		Double termValueAsDouble = null;
+
+		if (multOrDivOperator != null) {
+			termValue = term.evaluate(args);
+			
+			if (termValue instanceof String)
+				termValueAsDouble = Util.findVariableValue((String) termValue, args);
+			else
+				termValueAsDouble = (Double) termValue;
+		}
+		
 		Object factorValue = factor.evaluate(args);
 		Double factorValueAsDouble = null;
 		
@@ -30,15 +42,8 @@ public class TermNode implements INode {
 		else
 			factorValueAsDouble = (Double) factorValue;
 
-		if (multOrDivOperator != null) {
-			Object termValue = term.evaluate(args);
-			Double termValueAsDouble = null;
-			
-			if (termValue instanceof String)
-				termValueAsDouble = Util.findVariableValue((String) termValue, args);
-			else
-				termValueAsDouble = (Double) termValue;
-
+		// termValueAsDouble != null -> we are actually doing an operation
+		if (termValueAsDouble != null) {
 			//Multiplication
 			if (multOrDivOperator.token() == Token.MULT_OP)	{
 				System.out.println("OP: " + factorValueAsDouble + "*" + termValueAsDouble + " = " + factorValueAsDouble*termValueAsDouble );

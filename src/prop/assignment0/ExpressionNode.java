@@ -23,6 +23,17 @@ public class ExpressionNode implements INode{
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
+		Object exprValue = null;
+		Double exprValueAsDouble = null;
+		if (plusOrMinus != null) {
+			exprValue = expr.evaluate(args);
+			
+			if (exprValue instanceof String)
+				exprValueAsDouble = Util.findVariableValue((String) exprValue, args);
+			else
+				exprValueAsDouble = (Double) exprValue;
+		}			
+		
 		Object termValue = term.evaluate(args);
 		Double termValueAsDouble = null;
 
@@ -31,15 +42,8 @@ public class ExpressionNode implements INode{
 		else
 			termValueAsDouble = (Double) termValue;
 
-		if (plusOrMinus != null) {
-			Object exprValue = expr.evaluate(args);
-			Double exprValueAsDouble = null;
-			
-			if (exprValue instanceof String)
-				exprValueAsDouble = Util.findVariableValue((String) exprValue, args);
-			else
-				exprValueAsDouble = (Double) exprValue;
-
+		// exprValueAsDouble != null -> we are actually doing an operation
+		if (exprValueAsDouble != null) {
 			//Addition
 			if (plusOrMinus.token() == Token.ADD_OP) {
 				System.out.println("OP: " + termValueAsDouble + "+" + exprValueAsDouble + " = " + (termValueAsDouble+exprValueAsDouble) );

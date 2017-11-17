@@ -31,7 +31,7 @@ public class BlockNode implements INode {
 		StringBuilder builder = new StringBuilder();
 		
 		for (int i = 0; i < currentValues.length; i+=2) {
-			builder.append(currentValues[i] + ": ");
+			builder.append(currentValues[i] + " = ");
 			builder.append(currentValues[i+1] + "\n");
 		}
 		return builder.toString();
