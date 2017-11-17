@@ -30,6 +30,7 @@ public class AssignmentNode implements INode {
 				args[i] = id.value();
 				System.out.println("NEW ASSIGNMENT EVAL: " + id.value());
 				args[i+1] = expr.evaluate(args);
+				System.out.println(args[i] + " = " + args[i+1]);
 				break;
 			}
 		}

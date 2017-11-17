@@ -34,8 +34,8 @@ public class ExpressionNode implements INode{
 		else
 			termValueAsDouble = (Double) termValue;
 
-		if (plusOrMinus != null && termValueAsDouble != null) {
-			Object exprValue = term.evaluate(args);
+		if (plusOrMinus != null) {
+			Object exprValue = expr.evaluate(args);
 			Double exprValueAsDouble = null;
 			
 			if (exprValue instanceof String)
@@ -117,5 +117,9 @@ public class ExpressionNode implements INode{
 		expr.buildString(builder, tabs+1);
 		
 	}
-
+	
+	@Override
+	public String toString() {
+		return term.toString() + (plusOrMinus != null ? (plusOrMinus.value() + expr.toString()):"");
+	}
 }

@@ -30,7 +30,7 @@ public class TermNode implements INode {
 		else
 			factorValueAsDouble = (Double) factorValue;
 
-		if (multOrDivOperator != null && factorValueAsDouble != null) {
+		if (multOrDivOperator != null) {
 			Object termValue = term.evaluate(args);
 			Double termValueAsDouble = null;
 			
@@ -51,52 +51,33 @@ public class TermNode implements INode {
 
 		return factorValue;
 
-		// if (factorValue.token() == Token.IDENT) {
-		// for (int i = 0; i < args.length-2; i+=2) {
-		// if (((String) args[i]).equals((String) factorValue.value()))
-		// factorValue = (Lexeme) args[i+1];
-		// }
-		// }
-		//
-		//
-		// if (multOrDivOperator != null && factorValue.token() ==
-		// Token.INT_LIT) {
-		// Lexeme termValue = (Lexeme) term.evaluate(args);
-		// if (termValue.token() == Token.IDENT) {
-		// for (int i = 0; i < args.length-1; i+=2) {
-		// if (args[i] == termValue)
-		// termValue = (Lexeme) args[i+1];
-		// }
-		// }
-		//
-		//
-		// if (multOrDivOperator.token() == Token.MULT_OP) {
-		// Double factorValueDouble = Double.parseDouble(
-		// (String) factorValue.value());
-		// Double termValueDouble = Double.parseDouble(
-		// (String) termValue.value());
-		// System.out.println("OP: " + factorValueDouble + "*" +
-		// termValueDouble);
-		// return new Lexeme(
-		// (Double.toString(
-		// factorValueDouble
-		// *
-		// termValueDouble)),
-		// Token.INT_LIT);
-		// }
-		// Double factorValueDouble = Double.parseDouble(
-		// (String) factorValue.value());
-		// Double termValueDouble = Double.parseDouble(
-		// (String) termValue.value());
-		// System.out.println("OP: " + factorValueDouble + "/" +
-		// termValueDouble);
-		// return new Lexeme(
-		// (Double.toString(
-		// factorValueDouble
-		// /
-		// termValueDouble)),
-		// Token.INT_LIT);
-		// }
+//		if (factorValue.token() == Token.IDENT) {
+//			for (int i = 0; i < args.length - 2; i += 2) {
+//				if (((String) args[i]).equals((String) factorValue.value()))
+//					factorValue = (Lexeme) args[i + 1];
+//			}
+//		}
+//
+//		if (multOrDivOperator != null && factorValue.token() == Token.INT_LIT) {
+//			Lexeme termValue = (Lexeme) term.evaluate(args);
+//			if (termValue.token() == Token.IDENT) {
+//				for (int i = 0; i < args.length - 1; i += 2) {
+//					if (args[i] == termValue)
+//						termValue = (Lexeme) args[i + 1];
+//				}
+//			}
+//
+//			if (multOrDivOperator.token() == Token.MULT_OP) {
+//				Double factorValueDouble = Double.parseDouble((String) factorValue.value());
+//				Double termValueDouble = Double.parseDouble((String) termValue.value());
+//				System.out.println("OP: " + factorValueDouble + "*" + termValueDouble);
+//				return new Lexeme((Double.toString(factorValueDouble * termValueDouble)), Token.INT_LIT);
+//			}
+//			Double factorValueDouble = Double.parseDouble((String) factorValue.value());
+//			Double termValueDouble = Double.parseDouble((String) termValue.value());
+//			System.out.println("OP: " + factorValueDouble + "/" + termValueDouble);
+//			return new Lexeme((Double.toString(factorValueDouble / termValueDouble)), Token.INT_LIT);
+//		}
 
 	}
 
@@ -114,6 +95,11 @@ public class TermNode implements INode {
 		builder.append(multOrDivOperator + "\n");
 
 		term.buildString(builder, tabs + 1);
+	}
+	
+	@Override
+	public String toString() {
+		return factor.toString() + multOrDivOperator != null ?  (multOrDivOperator.value() + term.toString()) : "";
 	}
 
 }
