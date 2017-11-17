@@ -27,8 +27,8 @@ public class BlockNode implements INode {
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// FIXME BAD BAD BAD but I dont know how to make it work without knowing the amount of identifiers in the program before evaluating. I suppose I can count the number of assignment nodes...
-		Object[] currentValues = new Object[6];
+		int numberAssignments = stmt.nrAssignments();
+		Object[] currentValues = new Object[numberAssignments*2];
 		stmt.evaluate(currentValues);
 		StringBuilder builder = new StringBuilder();
 		

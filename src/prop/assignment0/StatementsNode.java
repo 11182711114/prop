@@ -25,6 +25,12 @@ public class StatementsNode implements INode {
 		}
 		return null;
 	}
+	
+	public int nrAssignments() {
+		if (stmts == null)
+			return 0;
+		return 1 + stmts.nrAssignments();
+	}
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
