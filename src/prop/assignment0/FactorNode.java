@@ -29,15 +29,12 @@ public class FactorNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		//FIXME Base return, nothing else will populate the call stack. Make them double, String and base op on those. Should be much less casting
-		if (intLex != null) {
+		if (intLex != null)
 			return Double.parseDouble((String) intLex.value());
-		} else if (id != null) {
+		else if (id != null)
 			return (String) id.value();
-		} else {
+		else
 			return expr.evaluate(args);
-		}
-			
 	}
 
 	@Override
@@ -46,7 +43,7 @@ public class FactorNode implements INode {
 		builder.append("FactorNode\n");
 		Util.appendTabs(builder, tabs+1);
 		if (intLex != null) 
-			builder.append(intLex + ".0\n");
+			builder.append(intLex + ".0\n"); //since output should be int+".0" for some reason even though int is defined as (0-9)+
 		else if (id != null)
 			builder.append(id + "\n");
 		else {
