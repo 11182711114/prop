@@ -46,11 +46,11 @@ public class ExpressionNode implements INode{
 			//Addition
 			if (plusOrMinus.token() == Token.ADD_OP) {
 				System.out.println("OP: " + termValueAsDouble + "+" + exprValueAsDouble + " = " + (termValueAsDouble+exprValueAsDouble) );
-				return new Double(termValueAsDouble*exprValueAsDouble);
+				return new Double(termValueAsDouble+exprValueAsDouble);
 			}
 			//Subtraction
 			System.out.println("OP: " + termValueAsDouble + "-" + exprValueAsDouble + " = " + (termValueAsDouble-exprValueAsDouble) );
-			return new Double(termValueAsDouble/exprValueAsDouble);
+			return new Double(termValueAsDouble-exprValueAsDouble);
 		}
 
 		return termValue;
