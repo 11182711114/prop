@@ -24,18 +24,7 @@ public class ExpressionNode implements INode{
 	}
 
 	@Override
-	public Object evaluate(Object[] args) throws Exception {
-		Object exprValue = null;
-		Double exprValueAsDouble = null;
-		if (plusOrMinus != null) {
-			exprValue = expr.evaluate(args);
-			
-			if (exprValue instanceof String)
-				exprValueAsDouble = Util.findVariableValue((String) exprValue, args);
-			else
-				exprValueAsDouble = (Double) exprValue;
-		}			
-		
+	public Object evaluate(Object[] args) throws Exception {		
 		Object termValue = term.evaluate(args);
 		Double termValueAsDouble = null;
 
@@ -45,15 +34,29 @@ public class ExpressionNode implements INode{
 			termValueAsDouble = (Double) termValue;
 
 		// exprValueAsDouble != null -> we are actually doing an operation
-		if (exprValueAsDouble != null) {
-			//Addition
-			if (plusOrMinus.token() == Token.ADD_OP) {
-				System.out.println("OP: " + termValueAsDouble + "+" + exprValueAsDouble + " = " + (termValueAsDouble+exprValueAsDouble) );
-				return new Double(termValueAsDouble+exprValueAsDouble);
-			}
-			//Subtraction
-			System.out.println("OP: " + termValueAsDouble + "-" + exprValueAsDouble + " = " + (termValueAsDouble-exprValueAsDouble) );
-			return new Double(termValueAsDouble-exprValueAsDouble);
+		if (plusOrMinus != null) {
+//			Object exprValue = expr.evaluate(args);
+			Double exprValueAsDouble = null;
+			
+			ExpressionNode nextExpr = expr;
+			while(nextExpr.plusOrMinus != null) {
+				Object s = nextExpr.term.evaluate(args);
+				if (s instanceof String)
+					exprValueAsDouble = Util.findVariableValue((String) s, args);
+				else
+					exprValueAsDouble = (Double) s;
+				
+				//Addition
+				if (plusOrMinus.token() == Token.ADD_OP) {
+					System.out.println("OP: " + termValueAsDouble + "+" + exprValueAsDouble + " = " + (termValueAsDouble+exprValueAsDouble) );
+					termValueAsDouble += exprValueAsDouble;
+				}
+				//Subtraction
+				System.out.println("OP: " + termValueAsDouble + "-" + exprValueAsDouble + " = " + (termValueAsDouble-exprValueAsDouble) );
+				termValueAsDouble -= exprValueAsDouble;
+				
+				nextExpr = nextExpr.expr;
+			}			
 		}
 
 		return termValue;
