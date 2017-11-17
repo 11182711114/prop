@@ -3,7 +3,9 @@ package prop.assignment0;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @author Fredrik Larsson frla9839
+ */
 public class Tokenizer implements ITokenizer {
 
 	private Scanner scanner;

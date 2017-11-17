@@ -35,7 +35,6 @@ public class Program {
 			}
 			catch (Exception exception) {
 				System.out.println("EXCEPTION: " + exception);
-				exception.printStackTrace();
 			}
 			finally {
 				if (parser != null)

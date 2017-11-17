@@ -1,7 +1,9 @@
 package prop.assignment0;
 
 import java.io.IOException;
-
+/**
+ * @author Fredrik Larsson frla9839
+ */
 public class StatementsNode implements INode {
 	
 	private AssignmentNode assign;

@@ -1,7 +1,9 @@
 package prop.assignment0;
 
 import java.io.IOException;
-
+/**
+ * @author Fredrik Larsson frla9839
+ */
 public class ExpressionNode implements INode{
 
 	private TermNode term;

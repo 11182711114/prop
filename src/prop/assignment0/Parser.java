@@ -2,6 +2,9 @@ package prop.assignment0;
 
 import java.io.IOException;
 
+/**
+ * @author Fredrik Larsson frla9839
+ */
 public class Parser implements IParser {
 
 	private Tokenizer tk = null;
@@ -24,7 +27,6 @@ public class Parser implements IParser {
 		BlockNode bn = null;
 		try {
 			bn = new BlockNode(tk);
-			//
 		} catch (TokenizerException e) {
 			throw e;
 		} catch (ParserException e) {

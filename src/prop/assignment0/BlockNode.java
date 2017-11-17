@@ -1,5 +1,7 @@
 package prop.assignment0;
-
+/**
+ * @author Fredrik Larsson frla9839
+ */
 public class BlockNode implements INode {
 
 	private Lexeme leftCurly, rightCurly;

@@ -1,7 +1,9 @@
 package prop.assignment0;
 
 import java.io.IOException;
-
+/**
+ * @author Fredrik Larsson frla9839
+ */
 public class TermNode implements INode {
 
 	private FactorNode factor;

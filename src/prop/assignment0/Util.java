@@ -1,5 +1,7 @@
 package prop.assignment0;
-
+/**
+ * @author Fredrik Larsson frla9839
+ */
 public class Util {
 	public static void appendTabs(StringBuilder builder, int tabs) {
 		for (int i = 0; i<tabs; i++) 
