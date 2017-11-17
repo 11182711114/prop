@@ -25,6 +25,7 @@ public class AssignmentNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
+		//args simply store variables as ["varName", value, ...]
 		for (int i = 0; i < args.length-1; i+=2) {
 			if (args[i] == null) {
 				args[i] = id.value();
