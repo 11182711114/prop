@@ -24,7 +24,7 @@ public class BlockNode implements INode {
 		
 	}
 	
-	
+	// Does not handle left association
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
 		int numberAssignments = stmt.nrAssignments();

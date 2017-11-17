@@ -58,20 +58,16 @@ public class Tokenizer implements ITokenizer {
 			}
 			String lexeme = strBuilder.toString();
 			
-			if (lexeme.matches(intPattern)) {
-				return new Lexeme(lexeme, Token.INT_LIT);
-			} 
-			else if (lexeme.matches(idPattern)) {
+			if (lexeme.matches(intPattern))
+				return new Lexeme(lexeme, Token.INT_LIT);			
+			else if (lexeme.matches(idPattern))
 				return new Lexeme(lexeme, Token.IDENT);
-			}
 			else
 				throw new TokenizerException("Unknown lexeme: " + strBuilder.toString());
-		} 
-		else if (symbols.containsKey(ch)) {
+		} else if (symbols.containsKey(ch)) {
 			scanner.moveNext();
 			return new Lexeme(ch, symbols.get(ch));
-		} 
-		else
+		} else
 			throw new TokenizerException("Unknown character: " + String.valueOf(ch));
 	}
 
